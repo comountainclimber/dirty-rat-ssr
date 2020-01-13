@@ -243,7 +243,7 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 import { createHelpers } from 'vuex-map-fields'
 import isEmpty from 'lodash/isEmpty'
 
-import countries from '../../utils/countries.json'
+import countries from '../utils/countries.json'
 
 const { mapFields } = createHelpers({
   getterType: 'shippingAddress/getForm',
@@ -260,7 +260,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['subtotal', 'loading']),
+    ...mapState(['subtotal', 'loading', 'checkoutData']),
     ...mapState('shippingAddress', ['form']),
     ...mapFields([
       'email',
@@ -272,20 +272,16 @@ export default {
       'company',
       'city',
       'province',
-      'zip'
+      'zip',
+      'country'
     ]),
     submitDisabled() {
       return !isEmpty(this.errors.collect())
     },
-    country: {
-      get() {
-        return this.$store.state.shippingAddress.form.country
-      },
-      set(value) {
-        this.setProvinceList(value)
-        return this.updateFormField({ path: 'country', value })
-      }
-    }
+    shipping_address: (state) =>
+      state.checkoutData &&
+      state.checkoutData.cart_contents &&
+      state.checkoutData.cart_contents.shipping_address
   },
   methods: {
     ...mapActions('shippingAddress', ['updateShippingAddress', 'setForm']),
@@ -295,20 +291,35 @@ export default {
       'updateCheckout',
       'getShippingData'
     ]),
-
-    setProvinceList(country) {
-      console.log(countries[country])
-    },
-
     submit(e) {
       e.preventDefault()
       this.$validator.validateAll().then(async (result) => {
-        console.log({ result })
         if (result) {
-          await this.updateCheckout({ shipping_address: this.form })
-          await this.getShippingData()
+          const comparisonForm = { ...this.form }
+          delete comparisonForm.email
+
+          const sortKeysAndReturnSortedObject = (object = {}) => {
+            if (!object) object = {}
+            const newObject = {}
+            Object.keys(object)
+              .sort()
+              .forEach((key) => {
+                newObject[key] = object[key]
+              })
+
+            return newObject
+          }
+
+          if (
+            JSON.stringify(sortKeysAndReturnSortedObject(comparisonForm)) !==
+            JSON.stringify(sortKeysAndReturnSortedObject(this.shipping_address))
+          ) {
+            await this.updateCheckout({ shipping_address: this.form })
+            await this.getShippingData()
+          }
+
           this.$router.push({
-            path: '/billing-information'
+            path: `/billing-information/${this.checkoutData.cart_id_or_token}`
           })
         }
       })

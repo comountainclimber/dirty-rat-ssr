@@ -1,14 +1,14 @@
 <template>
   <b-container id="checkout-wrapper">
     <b-row>
-      <b-col md="8">
+      <b-col md="7">
         <b-row class="store-logo-row">
           <span> <img :src="data.custom_header_logo_url"/></span>
           <h4>{{ data.store_name }}</h4>
         </b-row>
         <Billing />
       </b-col>
-      <b-col md="4">
+      <b-col md="5">
         <PricingInformation
           :tax="tax"
           :shipping="shipping"
@@ -29,25 +29,20 @@ import { mapState } from 'vuex'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import dropdown from '../images/dropdown.svg'
-import cart from '../images/cart.svg'
-import footerLogo from '../images/powered-by-recharge.png'
-// import ProgressBar from '../components/ProgressBar.vue'
-// import TheLoadingSpinner from '../components/TheLoadingSpinner.vue'
-import PricingInformation from '../components/checkout/PricingInformation.vue'
-import Billing from '../components/checkout/Billing.vue'
-// import Shipping from '../components/checkout/Shipping.vue'
+import dropdown from '../../images/dropdown.svg'
+import cart from '../../images/cart.svg'
+import footerLogo from '../../images/powered-by-recharge.png'
+import PricingInformation from '../../components/PricingInformation.vue'
+import Billing from '../../components/Billing.vue'
 
 export default {
   name: 'Checkout',
   components: {
-    // ProgressBar,
     PricingInformation,
     Billing
-    // TheLoadingSpinner,
-    // Shipping
   },
   head() {
+    // NOTE: we should only inject these scripts if the store uses braintree
     return {
       script: [
         { src: 'https://js.braintreegateway.com/web/3.57.0/js/client.js' },
@@ -74,25 +69,6 @@ export default {
     data: (state) => state.checkoutData,
     shipping: (state) => state.selectedShippingRate.price
   })
-  // async fetch({ store, params, route }) {
-  //   console.log('fething data')
-  //   // console.log({ params, route })
-
-  //   const { myshopify_domain, cart_token } = route.query
-  //   // // console.log(this.$route)
-  //   // const { data } = await axios.get(
-  //   //   `https://preprod.rechargeapps.com:8038/r/checkout?myshopify_domain=${myshopify_domain}&cart_token=${cart_token}`
-  //   // )
-  //   await store.dispatch('fetchCheckoutData', { myshopify_domain, cart_token })
-  // },
-
-  // mounted: () => {},
-  // methods: {
-  //   ...mapActions(['fetchCheckoutData']),
-  //   returnCurrentStep() {
-  //     return this.$route.meta.step
-  //   }
-  // }
 }
 </script>
 

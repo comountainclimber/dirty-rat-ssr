@@ -45,6 +45,25 @@ module.exports = {
     '@nuxtjs/proxy'
   ],
 
+  bootstrapVue: {
+    components: [
+      'BRow',
+      'BCol',
+      'BContainer',
+      'BButton',
+      'BFormGroup',
+      'BInputGroup',
+      'BFormInput',
+      'BFormSelect',
+      'BCard',
+      'BCardText',
+      'BFormRadioGroup',
+      'BFormRadio',
+      'BSpinner',
+      'BForm'
+    ] // Here you can specify which components you want to load and use
+  },
+
   axios: {
     proxy: true
   },
@@ -56,6 +75,8 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
+
+    analyze: true,
 
     extend(config, { isDev }) {}
   },

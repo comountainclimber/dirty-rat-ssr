@@ -1,8 +1,8 @@
-import VeeValidate, { Validator } from 'vee-validate'
+// import VeeValidate, { Validator } from 'vee-validate'
 
 // NOTE: We can handle validation localization here
 
-const dict = {
+export const dict = {
   custom: {
     province: {
       required: 'State is required.'
@@ -56,6 +56,6 @@ const dict = {
   }
 }
 
-Validator.localize('en', dict)
+// Validator.localize('en', dict)
 
-export default VeeValidate
+// export default VeeValidate

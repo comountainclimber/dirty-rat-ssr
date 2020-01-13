@@ -1,41 +1,14 @@
 <template>
   <b-container id="checkout-wrapper">
-    <!-- <div v-if="!loading || data.cart_contents.total_price" id="logo-container">
-      <span> <img :src="data.custom_header_logo_url"/></span>
-      <h3>{{ data.store_name }}</h3>
-      <span style="text-align: center; max-width: 300px;">
-        <PricingInformation
-          :tax="tax"
-          :shipping="shipping"
-          :subtotal="subtotal"
-          :total="total"
-          :line_items="data.cart_contents.line_items"
-        />
-      </span>
-    </div> -->
-
-    <!-- <div
-      v-if="!loading || data.cart_contents.total_price"
-      id="progress-bar-wrapper"
-    >
-      <ProgressBar
-        :logo-source="data.custom_header_logo_url"
-        :step="returnCurrentStep()"
-      />
-    </div> -->
-
-    <!-- <TheLoadingSpinner v-if="loading" is-loading /> -->
-    <!-- <router-view v-if="!loading"></router-view> -->
-
     <b-row>
-      <b-col md="8">
+      <b-col md="7">
         <b-row class="store-logo-row">
           <span> <img :src="data.custom_header_logo_url"/></span>
           <h4>{{ data.store_name }}</h4>
         </b-row>
         <Shipping />
       </b-col>
-      <b-col md="4">
+      <b-col md="5">
         <PricingInformation
           :tax="tax"
           :shipping="shipping"
@@ -59,18 +32,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import dropdown from '../images/dropdown.svg'
 import cart from '../images/cart.svg'
 import footerLogo from '../images/powered-by-recharge.png'
-// import ProgressBar from '../components/ProgressBar.vue'
-// import TheLoadingSpinner from '../components/TheLoadingSpinner.vue'
-import PricingInformation from '../components/checkout/PricingInformation.vue'
-// import Billing from '../components/checkout/Billing.vue'
-import Shipping from '../components/checkout/Shipping.vue'
+import PricingInformation from '../components/PricingInformation.vue'
+import Shipping from '../components/Shipping.vue'
 
 export default {
   name: 'Checkout',
   components: {
-    // ProgressBar,
     PricingInformation,
-    // TheLoadingSpinner,
     Shipping
   },
   data: () => {
@@ -101,14 +69,7 @@ export default {
     shipping: (state) => state.selectedShippingRate.price
   }),
   async fetch({ store, params, route }) {
-    // console.log({ params, route })
-
     const { myshopify_domain, cart_token } = route.query
-    // // console.log(this.$route)
-    // const { data } = await axios.get(
-    //   `https://preprod.rechargeapps.com:8038/r/checkout?myshopify_domain=${myshopify_domain}&cart_token=${cart_token}`
-    // )
-
     if (!store.state.total) {
       await store.dispatch('fetchCheckoutData', {
         myshopify_domain,
@@ -125,17 +86,6 @@ export default {
     }
   }
 }
-
-// async fetch({ store, params, route }) {
-//   console.log({ params, route })
-
-//   const { myshopify_domain, cart_token } = route.query
-//   // console.log(this.$route)
-//   const { data } = await axios.get(
-//     `https://preprod.rechargeapps.com:8038/r/checkout?myshopify_domain=${myshopify_domain}&cart_token=${cart_token}`
-//   )
-//   store.commit('add', data)
-// },
 </script>
 
 <style lang="scss">

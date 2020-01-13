@@ -75,14 +75,12 @@
         </div>
       </div>
     </div>
-    <!-- </template>
-  </v-popover> -->
   </div>
 </template>
 
 <script>
-import cart from '../../images/cart.svg'
-import dropdown from '../../images/dropdown.svg'
+import cart from '../images/cart.svg'
+import dropdown from '../images/dropdown.svg'
 
 const stripDollarSignAndReturnNumber = (amount) =>
   Number(amount.replace('$', ''))
