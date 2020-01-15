@@ -7,6 +7,7 @@
           <h4>{{ data.store_name }}</h4>
         </b-row>
         <Shipping />
+        <!-- <Billing /> -->
       </b-col>
       <b-col md="5">
         <PricingInformation
@@ -34,12 +35,14 @@ import cart from '../images/cart.svg'
 import footerLogo from '../images/powered-by-recharge.png'
 import PricingInformation from '../components/PricingInformation.vue'
 import Shipping from '../components/Shipping.vue'
+// import Billing from '../components/Billing.vue'
 
 export default {
   name: 'Checkout',
   components: {
     PricingInformation,
     Shipping
+    // Billing
   },
   data: () => {
     return {

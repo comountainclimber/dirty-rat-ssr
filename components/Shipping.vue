@@ -30,7 +30,7 @@
         <div id="shipping-address-form">
           <b-row>
             <b-col md="12">
-              <h5>Shipping Address</h5>
+              <h5>Shipping Address Shipping Address Shipping Address</h5>
             </b-col>
             <b-col md="6">
               <b-form-group
@@ -283,6 +283,7 @@ export default {
       state.checkoutData.cart_contents &&
       state.checkoutData.cart_contents.shipping_address
   },
+  mounted() {},
   methods: {
     ...mapActions('shippingAddress', ['updateShippingAddress', 'setForm']),
     ...mapMutations('shippingAddress', ['updateFormField']),

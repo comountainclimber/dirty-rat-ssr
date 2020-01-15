@@ -4,7 +4,7 @@
       <img :src="confirmCheck" />
     </b-row>
     <b-row>
-      <span>Thank you for your purchase! This is a test for JASON</span>
+      <span>Thank you for your order! This is a test for JASON</span>
     </b-row>
     <b-row>
       <p>
