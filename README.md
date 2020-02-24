@@ -56,6 +56,6 @@ return jsonify(
 
 3.) Start preprod/prestage server.
 
-4.) Add API key for ReCharge checkout to `.env` (see `.env.example` for an example)
+4.) Add API key for ReCharge checkout to `.env` (see `.env.example` for an example) and start `dirty-rat-ssr` using one of the commands listed above.
 
 4.) Checkout using store of widget code that was updated: ![](demo.gif)
