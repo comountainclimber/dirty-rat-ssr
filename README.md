@@ -26,7 +26,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Running a ReCharge checkout
 1. Update store widget code, specifically `snippets/subscription-cart-footer.liquid` such that it points to a locally running instance of `dirty-rat-ssr` like so:
 
-```
+```javascript
 function buildCheckoutUrl(options) {
   // Build the Checkout URL
   var checkout_url = 'http://localhost:3000/checkout-express` + '?',
@@ -42,7 +42,7 @@ function buildCheckoutUrl(options) {
 
 2.) In preprod or prestage checkout and run the following branch in `customcheckout`: `feature/dirty-rat-backend-support`. Essentially all this does update the response on page 1 such that it returns a JSON payload instead of a template. The payload contains everything `dirty-rat-ssr` needs to complete a checkout:
 
-```
+```python
 return jsonify(
     cart_contents=cart_contents,
     translations=translations,
