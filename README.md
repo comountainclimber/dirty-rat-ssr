@@ -40,7 +40,7 @@ function buildCheckoutUrl(options) {
 }
 ```
 
-2.) In preprod or prestage checkout and run the following branch in `customcheckout`: `feature/dirty-rat-backend-support`. Essentially all this does update the response on page 1 such that it returns a JSON payload instead of a template which containing everything `dirty-rat-ssr` needs to complete a checkout:
+2.) In preprod or prestage checkout and run the following branch in `customcheckout`: `feature/dirty-rat-backend-support`. Essentially all this does update the response on page 1 such that it returns a JSON payload instead of a template. The payload contains everything `dirty-rat-ssr` needs to complete a checkout:
 
 ```
 return jsonify(
