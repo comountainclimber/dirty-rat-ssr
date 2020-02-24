@@ -1,5 +1,8 @@
 module.exports = {
   mode: 'universal',
+  env: {
+    API_TOKEN: process.env.API_TOKEN
+  },
   /*
    ** Headers of the page
    */
@@ -33,7 +36,8 @@ module.exports = {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules

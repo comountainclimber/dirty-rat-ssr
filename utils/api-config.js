@@ -4,8 +4,7 @@ axios.interceptors.request.use(
   (config) => {
     config.headers = {
       ...config.headers,
-      'X-Recharge-Access-Token':
-        'ee83012e38e48a2fd0d85a8504db125327638a53cbdbdf55e9f3b7f207843435'
+      'X-Recharge-Access-Token': process.env.API_TOKEN
     }
     return config
   },
