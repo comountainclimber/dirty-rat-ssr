@@ -1,6 +1,6 @@
 # dirty-rat-ssr
 
-> My wonderful Nuxt.js project
+> A server side rendered Nuxt.js checkout experience built on top of ReCharge's checkout API.
 
 ## Build Setup
 
