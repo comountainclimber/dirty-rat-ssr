@@ -43,15 +43,15 @@ function buildCheckoutUrl(options) {
 2.) In preprod or prestage checkout and run the following branch in `customcheckout`: `feature/dirty-rat-backend-support`. Essentially all this does update the response on page 1 such that it returns a JSON payload instead of a template which containing everything `dirty-rat-ssr` needs to complete a checkout:
 
 ```
-  return jsonify(
-      cart_contents=cart_contents,
-      translations=translations,
-      general_attributes = json.loads(store.general_attributes),
-      custom_header_logo_url = store.custom_header_logo_url,
-      store_name = store.name,
-      cart_id_or_token = cart_id_or_token, 
-      braintree_paypal_client_token=store.braintree_paypal_client_token(),
-  )
+return jsonify(
+    cart_contents=cart_contents,
+    translations=translations,
+    general_attributes = json.loads(store.general_attributes),
+    custom_header_logo_url = store.custom_header_logo_url,
+    store_name = store.name,
+    cart_id_or_token = cart_id_or_token, 
+    braintree_paypal_client_token=store.braintree_paypal_client_token(),
+)
 ```
 
 3.) Start preprod/prestage server.
